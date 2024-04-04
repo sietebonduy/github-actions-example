@@ -19,6 +19,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm init
-      - run echo 'console.log("Я почти изучил Git в Merion!") > index.js'
+      - run: echo 'console.log("Я почти изучил Git в Merion!") > index.js'
       - run: npm run build
       - run: npm run test
