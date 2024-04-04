@@ -1,0 +1,24 @@
+name: example-action
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [15, 16, 20]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Использование Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm init
+      - run echo 'console.log("Я почти изучил Git в Merion!") > index.js'
+      - run: npm run build
+      - run: npm run test
